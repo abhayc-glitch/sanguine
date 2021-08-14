@@ -1,4 +1,4 @@
-# Umbrella☔️🌂
+# Umbrella🌂
 
 A dynamic, responsive diary thats powered by AI
 
