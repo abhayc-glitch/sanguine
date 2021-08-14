@@ -1,6 +1,6 @@
 # Umbrella☔️🌂
 
-A video chatting app to target the WFH boom
+A dynamic, responsive diary thats powered by AI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
