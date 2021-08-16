@@ -8,17 +8,17 @@ This application was generated using http://start.vertx.io
 
 To launch your tests:
 ```
-./mvnw clean test
+./gradlew clean test
 ```
 
 To package your application:
 ```
-./mvnw clean package
+./gradlew clean assemble
 ```
 
 To run your application:
 ```
-./mvnw clean compile exec:java
+./gradlew clean run
 ```
 
 == Help
