@@ -82,10 +82,8 @@ dependencies {
   implementation("io.vertx:vertx-web-templ-freemarker")
   implementation("io.vertx:vertx-web-templ-thymeleaf")
   implementation("io.vertx:vertx-web")
-  implementation("io.vertx:vertx-amqp-bridge")
   implementation("io.vertx:vertx-zookeeper")
   implementation("io.vertx:vertx-mysql-client")
-  implementation("io.vertx:vertx-jca")
   implementation("io.vertx:vertx-micrometer-metrics")
   implementation("io.vertx:vertx-json-schema")
   implementation("io.vertx:vertx-shell")
@@ -97,6 +95,7 @@ dependencies {
   implementation("io.vertx:vertx-maven-service-factory")
   implementation("io.vertx:vertx-auth-jdbc")
   implementation("io.vertx:vertx-rabbitmq-client")
+  implementation("junit:junit:4.13.1")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
@@ -108,11 +107,13 @@ java {
 
 tasks.withType<ShadowJar> {
   archiveClassifier.set("fat")
+  isZip64 = true
   manifest {
     attributes(mapOf("Main-Verticle" to mainVerticleName))
   }
   mergeServiceFiles()
 }
+
 
 tasks.withType<Test> {
   useJUnitPlatform()
