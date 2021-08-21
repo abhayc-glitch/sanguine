@@ -12,13 +12,13 @@ public class User {
 
   String password;
 
-  int id;
+  String id;
 
   String email;
 
   String token;
 
-  public User(String nickname, String password, int id, String email, String token){
+  public User(String nickname, String password, String id, String email, String token){
     this.nickname = nickname;
     this.password = password;
     this.id = id;
@@ -54,8 +54,28 @@ public class User {
     password = this.password;
   }
 
+  public String getid(){
+    return id;
+  }
 
+  public void setid(String id){
+    id = this.id;
+  }
 
+  public String getEmail() {
+    return email;
+  }
 
+  public void setEmail(String email){
+    email = this.email;
+  }
+
+  public String getToken(){
+    return token;
+  }
+
+  public void setToken(String token){
+    token = this.token;
+  }
 
 }
