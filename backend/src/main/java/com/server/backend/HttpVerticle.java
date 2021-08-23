@@ -1,5 +1,6 @@
 package com.server.backend;
 
+import com.server.backend.models.User;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServer;
@@ -9,8 +10,6 @@ import io.vertx.ext.web.Route;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
-
-
 
 public class HttpVerticle extends AbstractVerticle {
   @Override
@@ -31,18 +30,21 @@ public class HttpVerticle extends AbstractVerticle {
     // We are going to build out the register method below
     baseRouter.mountSubRouter("/api", apiRouter);
 
-    HttpServer listen = vertx.createHttpServer()
-      .requestHandler(baseRouter)
-      .listen(8080, result -> {
-        if (result.succeeded()) {
-          startPromise.complete();
-        } else {
-          startPromise.fail(result.cause());
-        }
-      });
-
+    HttpServer listen = vertx.createHttpServer().requestHandler(baseRouter).listen(8080, result -> {
+      if (result.succeeded()) {
+        startPromise.complete();
+      } else {
+        startPromise.fail(result.cause());
+      }
+    });
 
   }
-  private void registerUser(RoutingContext routingContext) {}
+
+  private void registerUser(RoutingContext routingContext) {
+    User retVal = new User("Jacob", "jakejake", null, "jake@jake.jake", null);
+
+    routingContext.response().setStatusCode(201).putHeader("Content-Type", "application/json")
+        .end(Json.encodePrettily(retVal.toluminJson()));
+  }
 
 }
