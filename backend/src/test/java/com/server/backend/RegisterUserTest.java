@@ -10,8 +10,10 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import io.vertx.junit5.VertxExtension;
+import io.vertx.junit5.VertxTestContext;
 
-@ExtendWith(VertxUnitRunner.class)
+@ExtendWith(VertxExtension.class)
 public class RegisterUserTest {
 
   private Vertx vertx;
