@@ -41,7 +41,7 @@ public class HttpVerticle extends AbstractVerticle {
   }
 
   private void registerUser(RoutingContext routingContext) {
-    User retVal = new User("Jacob", "jakejake", null, "jake@jake.jake", null);
+    User retVal = new User("Jacob", "jakejake", null, "jake@jake.jake", "jwt.token.here");
 
     routingContext.response().setStatusCode(201).putHeader("Content-Type", "application/json")
         .end(Json.encodePrettily(retVal.toluminJson()));

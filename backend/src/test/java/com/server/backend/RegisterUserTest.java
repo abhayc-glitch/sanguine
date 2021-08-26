@@ -7,8 +7,7 @@ import io.vertx.reactivex.ext.unit.Async;
 import io.vertx.reactivex.ext.unit.TestContext;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 
 public class RegisterUserTest {
@@ -63,7 +62,5 @@ public class RegisterUserTest {
         }
 
       });
-
-
   }
 }
