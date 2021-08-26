@@ -9,8 +9,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import io.vertx.junit5.VertxExtension;
+import io.vertx.junit5.VertxTestContext;
 
-@RunWith(VertxUnitRunner.class)
+@RunWith(VertxExtension.class)
 public class PersistenceTest {
   private Vertx vertx;
 
