@@ -8,11 +8,11 @@ import io.vertx.reactivex.ext.unit.TestContext;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 
-@RunWith(VertxExtension.class)
+@ExtendWith(VertxExtension.class)
 public class PersistenceTest {
   private Vertx vertx;
 
@@ -42,20 +42,6 @@ public class PersistenceTest {
       .put("action", "register-user")
       .put("user", userToRegister);
 
-    vertx.<JsonObject>eventBus().send("persistence-address", message, ar -> {
-      if (ar.succeeded()) {
-        testContext.assertNotNull(ar.result().body());
-        JsonObject returnedUser = (JsonObject) ar.result().body();
-        testContext.assertEquals("jake@jake.jake", returnedUser.getString("email"));
-        testContext.assertEquals("Jacob", returnedUser.getString("username"));
-        testContext.assertEquals("jwt.token.here", returnedUser.getString("token"));
-        async.complete();
-      }
-      else{
-        testContext.assertTrue(ar.succeeded());
-        async.complete();
-      }
-    });
   }
 
 
