@@ -30,7 +30,7 @@ public class HttpVerticle extends AbstractVerticle {
     // We are going to build out the register method below
     baseRouter.mountSubRouter("/api", apiRouter);
 
-    HttpServer listen = vertx.createHttpServer().requestHandler(baseRouter).listen(8080, result -> {
+    HttpServer listen = vertx.createHttpServer().requestHandler(baseRouter).listen(8000, result -> {
       if (result.succeeded()) {
         startPromise.complete();
       } else {

@@ -4,11 +4,9 @@ import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.eventbus.MessageConsumer;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 
 public class PersistenceVerticle extends AbstractVerticle {
