@@ -33,6 +33,7 @@ public class HttpVerticle extends AbstractVerticle {
     HttpServer listen = vertx.createHttpServer().requestHandler(baseRouter).listen(8000, result -> {
       if (result.succeeded()) {
         startPromise.complete();
+        System.out.println("HTTP server started on port 8000");
       } else {
         startPromise.fail(result.cause());
       }
@@ -44,7 +45,7 @@ public class HttpVerticle extends AbstractVerticle {
     User retVal = new User("Jacob", "jakejake", null, "jake@jake.jake", "jwt.token.here");
 
     routingContext.response().setStatusCode(201).putHeader("Content-Type", "application/json")
-        .end(Json.encodePrettily(retVal.toluminJson()));
+        .end(Json.encodePrettily(retVal.toSanguineJson()));
   }
 
 }

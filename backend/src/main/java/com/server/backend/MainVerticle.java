@@ -16,15 +16,14 @@ public class MainVerticle extends AbstractVerticle {
     ).onComplete(f ->{
       if (f.succeeded()) {
         startPromise.complete();
-        System.out.println("Http Server Successfully started on Port 8000");
       }else{
         startPromise.fail(f.cause());
       }
     });
   }
 
-  Future<Void> deployVerticle(String verticleName) {
-    Future<Void> retVal = Future.future();
+  Promise<Void> deployVerticle (String verticleName){
+    Promise<Void> retVal = Promise.promise();
     vertx.deployVerticle(verticleName, event -> {
       if (event.succeeded()) {
         retVal.complete();

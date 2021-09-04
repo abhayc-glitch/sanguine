@@ -25,7 +25,7 @@ public class RegisterUserTest {
     vertx = Vertx.vertx();
     webClient = WebClient.create(vertx);
 
-    vertx.deployVerticle(MainVerticle.class.getName());
+    vertx.deployVerticle(new MainVerticle());
   }
 
   @After

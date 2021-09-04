@@ -27,7 +27,7 @@ public class User {
 
   // Json Object for communicating serializing and transmitting structured data
   // over a network connection.
-  public JsonObject toluminJson() {
+  public JsonObject toSanguineJson() {
     JsonObject retVal = new JsonObject();
     JsonObject user = new JsonObject().put("nickname", this.nickname).put("email", this.email).put("token", this.token)
         .put("id", this.id);

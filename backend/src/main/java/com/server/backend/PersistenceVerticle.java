@@ -61,10 +61,8 @@ public class PersistenceVerticle extends AbstractVerticle {
    * @param message
    */
   private void registerUser(Message<JsonObject> message) {
-
     message.reply(new JsonObject()
       .put("email", "jake@jake.jake")
-      .put("token", "jwt.token.here")
       .put("username", "Jacob"));
   }
 }
