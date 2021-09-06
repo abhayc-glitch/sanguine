@@ -1,15 +1,20 @@
 # Architecture
 
 ### FRONTEND:
-TAILWIND CSS
+Tailwind Css
+
 React Native
+
 Typescript 
+
 Feather Icons
 
 ### Backend: Custom Signaling WebServer made with Vert.x
 Tools:
     Vert.x
+    
     MongoDB
+    
     Gradle
 #### Notes:
 
