@@ -2,16 +2,17 @@
 
 ### FRONTEND:
 TAILWIND CSS
-React stuff
+React Native
 Typescript 
 Feather Icons
 
-### Backend => Custom WebServer made with Vert.x
+### Backend: Custom Signaling WebServer made with Vert.x
 Tools:
     Vert.x
-    mySQL
-    Yarn
+    MongoDB
+    Gradle
 #### Notes:
+
     A WebServer?
         Software that serves web content. Anything that can be on the web and be transferred on the web.
         Uses the HTTP protocol
@@ -48,7 +49,7 @@ Tools:
         Basically its an organized collection of data.
         mySQL is a relational database
             It is filled with tables that have rows and columns
-
+            
 ## Backend Notes
 
 ##### Basic Vert.X struct 
