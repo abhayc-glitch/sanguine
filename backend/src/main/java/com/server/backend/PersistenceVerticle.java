@@ -8,17 +8,23 @@ import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.ext.mongo.MongoClient;
+import io.vertx.reactivex.ext.auth.mongo.MongoAuth;
 
 public class PersistenceVerticle extends AbstractVerticle {
   // for DB access
   private MongoClient mongoClient;
+
+  private MongoAuth loginAuthProvider;
 
   private Vertx vertx;
 
   @Override
   public void start(Promise<Void> startPromise) {
     // Configure the MongoClient inline.  This should be externalized into a config file
-    mongoClient = MongoClient.createShared(vertx, new JsonObject().put("db_name", config().getString("db_name", "conduit")).put("connection_string", config().getString("connection_string", "mongodb://localhost:27017")));
+    mongoClient = MongoClient.createShared(vertx, new JsonObject().put("db_name", config()
+      .getString("db_name", "sanguinedb"))
+      .put("connection_string", config()
+      .getString("connection_string", "mongodb://localhost:27017")));
     EventBus eventBus = vertx.eventBus();
     MessageConsumer<JsonObject> consumer = eventBus.consumer("persistence-address");
 
@@ -36,9 +42,7 @@ public class PersistenceVerticle extends AbstractVerticle {
     });
 
     startPromise.complete();
-
   }
-
   /**
    * Receive Json in the following format:
    *

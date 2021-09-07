@@ -6,7 +6,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
-import io.vertx.ext.web.Route;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -14,7 +14,6 @@ import io.vertx.ext.web.handler.BodyHandler;
 public class HttpVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) {
-
     // create a apiRouter to handle the API
     // create a base router to handle everything at the root level
     Router baseRouter = Router.router(vertx);
@@ -38,14 +37,29 @@ public class HttpVerticle extends AbstractVerticle {
         startPromise.fail(result.cause());
       }
     });
-
   }
-
   private void registerUser(RoutingContext routingContext) {
-    User retVal = new User("Jacob", "jakejake", null, "jake@jake.jake", "jwt.token.here");
+    JsonObject message = new JsonObject()
+      .put("action", "register-user")
+      .put("user", routingContext.getBodyAsJson().getJsonObject("user"));
 
-    routingContext.response().setStatusCode(201).putHeader("Content-Type", "application/json")
-        .end(Json.encodePrettily(retVal.toSanguineJson()));
+    vertx.eventBus().send("persistence-address", message, res -> {
+      if (res.succeeded()) {
+        User returnedUser = Json.decodeValue(res.result().body().toString(), User.class);
+        returnedUser.setToken("jwt.token.here");
+        routingContext.response()
+          .setStatusCode(201)
+          .putHeader("Content-Type", "application/json; charset=utf-8")
+          //.putHeader("Content-Length", String.valueOf(userResult.toString().length()))
+          .end(Json.encodePrettily(returnedUser.toSanguineJson()));
+      }else{
+        routingContext.response()
+          .setStatusCode(500)
+          .putHeader("Content-Type", "application/json; charset=utf-8")
+          //.putHeader("Content-Length", String.valueOf(userResult.toString().length()))
+          .end(Json.encodePrettily(res.cause().getMessage()));
+
+      }
+    });
   }
-
 }

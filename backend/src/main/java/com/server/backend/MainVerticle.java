@@ -2,24 +2,14 @@ package com.server.backend;
 
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.CompositeFuture;
-import io.vertx.core.Future;
 import io.vertx.core.Promise;
 
 public class MainVerticle extends AbstractVerticle {
-
   @Override
   public void start(Promise<Void> startPromise) {
-    CompositeFuture.all(
-      deployVerticle(HttpVerticle.class.getName()),
-      deployVerticle(PersistenceVerticle.class.getName())
-    ).onComplete(f ->{
-      if (f.succeeded()) {
-        startPromise.complete();
-      }else{
-        startPromise.fail(f.cause());
-      }
-    });
+      deployVerticle(HttpVerticle.class.getName());
+      deployVerticle(PersistenceVerticle.class.getName());
+      // Dont need an onComplete because we already do that in the deployverticle?
   }
 
   Promise<Void> deployVerticle (String verticleName){
