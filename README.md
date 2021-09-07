@@ -1,4 +1,6 @@
 # sanguine🍂
+> Your Personal Mental Health companion.
+
 A dynamic, responsive diary thats powered by AI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -45,3 +47,57 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Vert.x
+
+image:https://img.shields.io/badge/vert.x-4.1.2-purple.svg[link="https://vertx.io"]
+
+This application was generated using http://start.vertx.io
+
+== Building
+
+To launch your tests:
+```
+./gradlew clean test
+```
+
+To package your application:
+```
+./gradlew clean assemble
+```
+
+To run your application:
+```
+./gradlew clean run
+```
+
+== Help
+
+* https://vertx.io/docs/[Vert.x Documentation]
+* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
+* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
+* https://gitter.im/eclipse-vertx/vertx-users[Vert.x Gitter]
+
+
+#### Tech Stack
+Client(Frontend):
+
+  React Native
+
+  Typescript
+  
+  Yarn
+  
+  Tailwind CSS
+  
+  React Icons
+  
+Server(Backend):
+
+  Vertx
+  
+  MongoDB
+  
+  Gradle
+ 
+  
