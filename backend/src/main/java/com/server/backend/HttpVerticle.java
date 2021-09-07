@@ -14,7 +14,6 @@ import io.vertx.ext.web.handler.BodyHandler;
 public class HttpVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) {
-
     // create a apiRouter to handle the API
     // create a base router to handle everything at the root level
     Router baseRouter = Router.router(vertx);
@@ -38,9 +37,7 @@ public class HttpVerticle extends AbstractVerticle {
         startPromise.fail(result.cause());
       }
     });
-
   }
-
   private void registerUser(RoutingContext routingContext) {
     JsonObject message = new JsonObject()
       .put("action", "register-user")
@@ -65,5 +62,4 @@ public class HttpVerticle extends AbstractVerticle {
       }
     });
   }
-
 }
