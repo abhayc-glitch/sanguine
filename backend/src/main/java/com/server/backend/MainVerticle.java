@@ -10,16 +10,8 @@ public class MainVerticle extends AbstractVerticle {
 
   @Override
   public void start(Promise<Void> startPromise) {
-    CompositeFuture.all(
-      deployVerticle(HttpVerticle.class.getName()),
-      deployVerticle(PersistenceVerticle.class.getName())
-    ).onComplete(f ->{
-      if (f.succeeded()) {
-        startPromise.complete();
-      }else{
-        startPromise.fail(f.cause());
-      }
-    });
+      deployVerticle(HttpVerticle.class.getName());
+      deployVerticle(PersistenceVerticle.class.getName());
   }
 
   Promise<Void> deployVerticle (String verticleName){

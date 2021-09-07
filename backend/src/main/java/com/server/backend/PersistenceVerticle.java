@@ -1,13 +1,14 @@
 package com.server.backend;
 
 import io.vertx.core.Promise;
-import io.vertx.core.Vertx;
+import io.vertx.reactivex.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.eventbus.MessageConsumer;
-import io.vertx.ext.mongo.MongoClient;
+import io.vertx.reactivex.ext.mongo.MongoClient;
+import io.vertx.reactivex.ext.auth.mongo.MongoAuth;
 
 public class PersistenceVerticle extends AbstractVerticle {
   // for DB access
@@ -15,11 +16,22 @@ public class PersistenceVerticle extends AbstractVerticle {
 
   private Vertx vertx;
 
+  private MongoAuth loginAuthProvider;
+
   @Override
   public void start(Promise<Void> startPromise) {
     // Configure the MongoClient inline.  This should be externalized into a config file
-    mongoClient = MongoClient.createShared(vertx, new JsonObject().put("db_name", config().getString("db_name", "conduit")).put("connection_string", config().getString("connection_string", "mongodb://localhost:27017")));
-    EventBus eventBus = vertx.eventBus();
+    mongoClient = MongoClient.createShared(vertx, new JsonObject()
+      .put("db_name", config()
+      .getString("db_name", "conduit"))
+      .put("connection_string", config()
+      .getString("connection_string", "mongodb://localhost:27017")));
+
+    loginAuthProvider = MongoAuth.create(mongoClient, new JsonObject());
+    loginAuthProvider.setUsernameField("email");
+    loginAuthProvider.setUsernameCredentialField("email");
+
+    EventBus eventBus = (EventBus) vertx.eventBus();
     MessageConsumer<JsonObject> consumer = eventBus.consumer("persistence-address");
 
     consumer.handler(message -> {
