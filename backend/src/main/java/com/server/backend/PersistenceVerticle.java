@@ -9,6 +9,7 @@ import io.vertx.core.eventbus.Message;
 import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.reactivex.ext.mongo.MongoClient;
 import io.vertx.reactivex.ext.auth.mongo.MongoAuth;
+import io.vertx.ext.auth.mongo.MongoAuthorizationOptions;
 
 public class PersistenceVerticle extends AbstractVerticle {
   // for DB access

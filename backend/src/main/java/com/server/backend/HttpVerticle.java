@@ -39,6 +39,9 @@ public class HttpVerticle extends AbstractVerticle {
     });
   }
   private void registerUser(RoutingContext routingContext) {
+
+    // Spend a good 15 min pomodoro if not work on entry ad quote
+
     JsonObject message = new JsonObject()
       .put("action", "register-user")
       .put("user", routingContext.getBodyAsJson().getJsonObject("user"));
