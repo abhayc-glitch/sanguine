@@ -1,5 +1,5 @@
 # sanguine🍂
-> Your Personal Mental Health companion.
+> Your Brain's best friend.
 
 A dynamic, responsive diary thats powered by AI
 
