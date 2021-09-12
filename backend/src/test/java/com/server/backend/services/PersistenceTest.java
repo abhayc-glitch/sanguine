@@ -1,8 +1,8 @@
-package com.server.backend;
+package com.server.backend.services;
 
+import com.server.backend.verticles.PersistenceVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.web.client.WebClient;
 import io.vertx.reactivex.ext.unit.Async;
 import io.vertx.reactivex.ext.unit.TestContext;
 import org.junit.After;
@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import io.vertx.junit5.VertxExtension;
-import io.vertx.junit5.VertxTestContext;
 
 @ExtendWith(VertxExtension.class)
 public class PersistenceTest {

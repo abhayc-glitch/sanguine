@@ -1,5 +1,6 @@
-package com.server.backend;
+package com.server.backend.services;
 
+import com.server.backend.verticles.MainVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
