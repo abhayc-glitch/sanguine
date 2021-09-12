@@ -1,9 +1,7 @@
-package com.server.backend;
+package com.server.backend.verticles;
 
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.CompositeFuture;
-import io.vertx.core.Future;
 import io.vertx.core.Promise;
 
 public class MainVerticle extends AbstractVerticle {

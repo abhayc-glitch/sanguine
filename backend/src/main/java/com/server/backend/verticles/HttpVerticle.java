@@ -1,4 +1,4 @@
-package com.server.backend;
+package com.server.backend.verticles;
 
 import com.server.backend.models.User;
 import io.vertx.core.AbstractVerticle;
@@ -48,6 +48,7 @@ public class HttpVerticle extends AbstractVerticle {
 
     vertx.eventBus().send("persistence-address", message, res -> {
       if (res.succeeded()) {
+        // Understands what this code does.
         User returnedUser = Json.decodeValue(res.result().body().toString(), User.class);
         returnedUser.setToken("jwt.token.here");
         routingContext.response()

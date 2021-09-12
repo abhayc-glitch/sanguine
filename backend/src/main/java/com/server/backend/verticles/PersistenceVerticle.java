@@ -1,4 +1,4 @@
-package com.server.backend;
+package com.server.backend.verticles;
 
 import io.vertx.core.Promise;
 import io.vertx.reactivex.core.Vertx;
