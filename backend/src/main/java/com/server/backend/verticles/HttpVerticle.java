@@ -3,6 +3,7 @@ package com.server.backend.verticles;
 import com.server.backend.models.User;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
@@ -29,6 +30,7 @@ public class HttpVerticle extends AbstractVerticle {
     // We are going to build out the register method below
     baseRouter.mountSubRouter("/api", apiRouter);
 
+    // Creating a HTTP Server
     HttpServer listen = vertx.createHttpServer().requestHandler(baseRouter).listen(8000, result -> {
       if (result.succeeded()) {
         startPromise.complete();
@@ -38,32 +40,31 @@ public class HttpVerticle extends AbstractVerticle {
       }
     });
   }
-  private void registerUser(RoutingContext routingContext) {
 
-    // Spend a good 15 min pomodoro if not work on entry ad quote
+  // Register User method to
+  private void registerUser(RoutingContext routingContext) {
 
     JsonObject message = new JsonObject()
       .put("action", "register-user")
       .put("user", routingContext.getBodyAsJson().getJsonObject("user"));
 
-    vertx.eventBus().send("persistence-address", message, res -> {
-      if (res.succeeded()) {
-        // Understands what this code does.
-        User returnedUser = Json.decodeValue(res.result().body().toString(), User.class);
-        returnedUser.setToken("jwt.token.here");
-        routingContext.response()
-          .setStatusCode(201)
-          .putHeader("Content-Type", "application/json; charset=utf-8")
-          //.putHeader("Content-Length", String.valueOf(userResult.toString().length()))
-          .end(Json.encodePrettily(returnedUser.toSanguineJson()));
-      }else{
-        routingContext.response()
-          .setStatusCode(500)
-          .putHeader("Content-Type", "application/json; charset=utf-8")
-          //.putHeader("Content-Length", String.valueOf(userResult.toString().length()))
-          .end(Json.encodePrettily(res.cause().getMessage()));
+    EventBus res = vertx.eventBus().send("persistence-address", message);
+    if (res.succeeded()) {
+      // Understands what this code does.
+      User returnedUser = Json.decodeValue(res.result().body().toString(), User.class);
+      returnedUser.setToken("jwt.token.here");
+      routingContext.response()
+        .setStatusCode(201)
+        .putHeader("Content-Type", "application/json; charset=utf-8")
+        //.putHeader("Content-Length", String.valueOf(userResult.toString().length()))
+        .end(Json.encodePrettily(returnedUser.toSanguineJson()));
+    }else{
+      routingContext.response()
+        .setStatusCode(500)
+        .putHeader("Content-Type", "application/json; charset=utf-8")
+        //.putHeader("Content-Length", String.valueOf(userResult.toString().length()))
+        .end(Json.encodePrettily(res.cause().getMessage()));
 
-      }
-    });
+    };
   }
 }
