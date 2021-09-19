@@ -21,30 +21,34 @@ public class PersistenceVerticle extends AbstractVerticle {
 
   @Override
   public void start(Promise<Void> startPromise) {
-    // Configure the MongoClient inline.  This should be externalized into a config file
+    // Configure the MongoClient inline. This should be externalized into a config file
     mongoClient = MongoClient.createShared(vertx, new JsonObject()
       .put("db_name", config()
       .getString("db_name", "conduit"))
       .put("connection_string", config()
       .getString("connection_string", "mongodb://localhost:27017")));
-
+    // This code has been depricated change this
+    // The point is to create a username and password field to input to
     loginAuthProvider = MongoAuth.create(mongoClient, new JsonObject());
     loginAuthProvider.setUsernameField("email");
     loginAuthProvider.setUsernameCredentialField("email");
 
     EventBus eventBus = (EventBus) vertx.eventBus();
+
+    //Creating a message consumer to send to a persistence address
     MessageConsumer<JsonObject> consumer = eventBus.consumer("persistence-address");
 
     consumer.handler(message -> {
-
+      // In our message if it has an action which it should
       String action = message.body().getString("action");
-
+      // Call a switch and if in case the action is "Register User" then go ahead and call the register user method
       switch (action) {
         case "register-user":
           registerUser(message);
           break;
+      // Or else fail because we don't know what action that is.
         default:
-          message.fail(1, "Unkown action: " + message.body());
+          message.fail(1, "Unknown action: " + message.body());
       }
     });
 
@@ -74,6 +78,7 @@ public class PersistenceVerticle extends AbstractVerticle {
    * @param message
    */
   private void registerUser(Message<JsonObject> message) {
+    // Reply to the method call in the handler message.
     message.reply(new JsonObject()
       .put("email", "jake@jake.jake")
       .put("username", "Jacob"));
