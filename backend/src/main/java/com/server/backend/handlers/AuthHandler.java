@@ -1,6 +1,7 @@
 package com.server.backend.handlers;
 
 
+import com.server.backend.dto.RegisterRequest;
 import io.vertx.core.impl.logging.Logger;
 import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.reactivex.core.Vertx;
@@ -12,5 +13,9 @@ public class AuthHandler extends BaseHandler{
 
   public AuthHandler(Vertx vertx) {
     super(vertx);
+  }
+
+  public void signup(RegisterRequest registerRequest){
+
   }
 }
