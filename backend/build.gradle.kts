@@ -96,6 +96,9 @@ dependencies {
   implementation("io.vertx:vertx-auth-jdbc")
   implementation("io.vertx:vertx-rabbitmq-client")
   implementation("junit:junit:4.13.1")
+    implementation("org.projectlombok:lombok:1.18.20")
+  implementation("android.arch.work:work-runtime:1.0.1")
+  implementation("org.projectlombok:lombok:1.18.20")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
