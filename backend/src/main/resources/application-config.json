@@ -1,5 +1,0 @@
-{
-  "env": "test",
-  "db.name": "sanguinedb",
-  "connection_string": "mongodb://localhost:27017"
-}
