@@ -2,21 +2,26 @@ package com.server.backend.models;
 
 import io.vertx.core.json.JsonObject;
 
+import javax.validation.constraints.NotEmpty;
+
 public class User {
   // Nickname
   // Password
   // ID
   // email
   // Token
-  String nickname;
+  @NotEmpty(message = "Name may not be empty")
+  private String nickname;
 
-  String password;
+  @NotEmpty(message = "Password may not be empty")
+  private String password;
 
-  String id;
+  private String id;
 
-  String email;
+  @NotEmpty(message = "Email may not be empty")
+  private String email;
 
-  String token;
+  private String token;
 
   public User(String nickname, String password, String id, String email, String token) {
     this.nickname = nickname;

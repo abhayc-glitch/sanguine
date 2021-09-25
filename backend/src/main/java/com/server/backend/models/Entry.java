@@ -1,11 +1,13 @@
 package com.server.backend.models;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 
 public class Entry {
 
   // An Entry is where the user can do a check in, and describe there feelings Similar ot a post.java
 
+  @NotEmpty(message = "Name may not be empty")
   private String title;
 
   private String textContent;

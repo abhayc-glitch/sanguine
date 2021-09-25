@@ -1,14 +1,15 @@
 package com.server.backend.verticles;
 
 import io.vertx.core.Promise;
-import io.vertx.reactivex.core.Vertx;
+import io.vertx.ext.auth.mongo.MongoAuthentication;
+import io.vertx.ext.auth.mongo.MongoAuthenticationOptions;
+import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.eventbus.MessageConsumer;
-import io.vertx.reactivex.ext.mongo.MongoClient;
-import io.vertx.reactivex.ext.auth.mongo.MongoAuth;
+import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.auth.mongo.MongoAuthorizationOptions;
 
 public class PersistenceVerticle extends AbstractVerticle {
@@ -17,21 +18,30 @@ public class PersistenceVerticle extends AbstractVerticle {
 
   private Vertx vertx;
 
-  private MongoAuth loginAuthProvider;
+  // Logging in Client
+  private MongoAuthenticationOptions loginAuthProvider;
 
+  MongoAuthenticationOptions options = new MongoAuthenticationOptions();
   @Override
   public void start(Promise<Void> startPromise) {
     // Configure the MongoClient inline. This should be externalized into a config file
     mongoClient = MongoClient.createShared(vertx, new JsonObject()
       .put("db_name", config()
-      .getString("db_name", "conduit"))
+      .getString("db_name", "sanguinedb"))
       .put("connection_string", config()
       .getString("connection_string", "mongodb://localhost:27017")));
-    // This code has been depricated change this
-    // The point is to create a username and password field to input to
-    loginAuthProvider = MongoAuth.create(mongoClient, new JsonObject());
+    // The point is to create a username and password field to input to.
+
+
+    // Can Mongo auth have an new JSON Object???
+
+
+    loginAuthProvider = MongoAuthentication.create(mongoClient, new JsonObject());
     loginAuthProvider.setUsernameField("email");
     loginAuthProvider.setUsernameCredentialField("email");
+
+    JsonObject authProperties = new JsonObject();
+    MongoAuthentication authProvider = MongoAuthentication.create(mongoClient, authProperties);
 
     EventBus eventBus = (EventBus) vertx.eventBus();
 
