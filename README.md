@@ -1,7 +1,7 @@
 # sanguine🍂
 > Your Brain's best friend.
 
-A dynamic, responsive diary thats powered by AI
+A dynamic, responsive chronicle thats powered by AI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
