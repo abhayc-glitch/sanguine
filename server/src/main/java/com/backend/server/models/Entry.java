@@ -10,14 +10,14 @@ public class Entry {
 
     private String textContent;
 
-    private Long entryId;
+    private Double entryId;
 
     private int mood;
 
     private Instant createdDate;
 
 
-    public Entry(String title, String textContent, Long entryId, int mood, Instant createdDate) {
+    public Entry(String title, String textContent, Double entryId, int mood, Instant createdDate) {
         this.title = title;
         this.textContent = textContent;
         this.entryId = entryId;
@@ -41,11 +41,11 @@ public class Entry {
         this.textContent = textContent;
     }
 
-    public Long getPostId() {
+    public double getEntryId() {
         return entryId;
     }
 
-    public void setPostId(Long postId) {
+    public void setEntryId(double entryId) {
         this.entryId = entryId;
     }
 

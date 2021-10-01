@@ -1,0 +1,10 @@
+spring:
+  config:
+    import: "optional:configserver:"
+  data:
+    mongodb:
+      URI: "mongodb://localhost:27017/sanguinedb"
+
+server:
+  port: "8000"
+
