@@ -16,8 +16,8 @@ public class User {
     // ID
     // email
     // Token
-    @NotBlank(message = "Nickname is required")
-    private String nickname;
+    @NotBlank(message = "Username is required")
+    private String username;
 
     @NotBlank(message = "Password is required")
     private String password;
@@ -35,22 +35,15 @@ public class User {
 
     private boolean enabled;
 
-    public User(String nickname, String password, long id, String email, String token, Instant created, boolean enabled) {
-        this.nickname = nickname;
-        this.password = password;
-        this.id = id;
-        this.email = email;
-        this.token = token;
-        this.created = created;
-        this.enabled = enabled;
+    public User() {
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
