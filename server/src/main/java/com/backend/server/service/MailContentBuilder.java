@@ -9,7 +9,7 @@ import org.thymeleaf.context.Context;
 @AllArgsConstructor
 public class MailContentBuilder {
 
-    private final TemplateEngine templateEngine;
+    private TemplateEngine templateEngine;
 
     public String build(String message) {
         Context context = new Context();
