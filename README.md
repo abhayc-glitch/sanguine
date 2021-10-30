@@ -48,11 +48,11 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Vert.x
+## Springm Boot
 
 image:https://img.shields.io/badge/vert.x-4.1.2-purple.svg[link="https://vertx.io"]
 
-This application was generated using http://start.vertx.io
+This application was generated using https://start.spring.io
 
 == Building
 
@@ -73,12 +73,6 @@ To run your application:
 
 == Help
 
-* https://vertx.io/docs/[Vert.x Documentation]
-* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
-* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
-* https://gitter.im/eclipse-vertx/vertx-users[Vert.x Gitter]
-
-
 #### Tech Stack
 Client(Frontend):
 
@@ -94,7 +88,7 @@ Client(Frontend):
   
 Server(Backend):
 
-  Vertx
+  Spring Boot
   
   MongoDB
   
