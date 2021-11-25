@@ -1,5 +1,5 @@
 # sanguine🍂
-> Your Brain's best friend.
+> The responsive AI diary
 
 A dynamic, responsive chronicle thats powered by AI
 
